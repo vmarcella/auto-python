@@ -1,6 +1,7 @@
 from decimal import Decimal
 
 import delorean
+from parse import parse
 
 
 class PriceLog:
@@ -23,20 +24,18 @@ class PriceLog:
             [<Timestamp>] - SALE - PRODUCT: <product id> - PRICE: $<price>
             to a pricelog object
         """
-        divided_log_list = text_log.split(" - ")
 
-        # Unpack the elements of our list into variables
-        timestamp_string, _, product_string, price_string = divided_log_list
+        def price(string):
+            return Decimal(string)
 
-        # Use deloarean to parse our timestamp (strip off brackets to isolate
-        # the ISO format time)
-        timestamp = delorean.parse(timestamp_string.strip("[]"))
+        def isodate(string):
+            return delorean.parse(string)
 
-        # Grab the product ID (split by the colon, select
-        # the second element (Id))
-        product_id = int(product_string.split(":")[-1])
+        log_format = (
+            "[{timestamp:isodate}] - SALE - PRODUCT: {product:d} - "
+            "PRICE: ${price:price}"
+        )
 
-        # Grab the price as a decimal (split by the dolar sign, select
-        # the second element)
-        price = Decimal(price_string.split("$")[-1])
-        return cls(timestamp, product_id, price)
+        formats = {"price": price, "isodate": isodate}
+        result = parse(log_format, text_log, formats)
+        return cls(result["timestamp"], result["product"], result["price"])
