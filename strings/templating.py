@@ -5,6 +5,8 @@ from decimal import Decimal
 
 import delorean
 
+from pricelog import PriceLog
+
 
 def create_formatted_table():
     """
@@ -103,10 +105,10 @@ def extract_data_from_structure():
     # time)
     timestamp = delorean.parse(timestamp_string.strip("[]"))
 
-    # Grab the product ID
+    # Grab the product ID (split by the colon, select the second element (Id))
     product_id = int(product_string.split(":")[-1])
 
-    # Grab the price as a decimal
+    # Grab the price as a decimal (split by the dolar sign, select the second element)
     price = Decimal(price_string.split("$")[-1])
 
     return timestamp, product_id, price
@@ -117,3 +119,6 @@ create_formatted_table()
 print(transform_report())
 # Grab our extracted information
 print(extract_data_from_structure())
+
+log = "[2018-05-05T11:07:12.267897] - SALE - PRODUCT: 1345 - PRICE: $09.99"
+print(PriceLog.parse(log))
