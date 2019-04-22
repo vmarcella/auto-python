@@ -4,6 +4,7 @@
 from decimal import Decimal
 
 import delorean
+from parse import parse
 
 from pricelog import PriceLog
 
@@ -89,36 +90,75 @@ def transform_report():
 
 def extract_data_from_structure():
     """
-        Extracting useful information out of a structured string into python as native
-        python types/objects we can work with
+        Extracting useful information out of a structured string 
+        into python as native python types/objects we can work with
     """
 
     # our structured log
-    log = "[2018-05-05T11:07:12.267897] - SALE - PRODUCT: 1345 - PRICE: $09.99"
+    text_log = "[2018-05-05T11:07:12.267897] - SALE - PRODUCT: 1345 - PRICE: $09.99"
     # Our log divided into a list (separated by dashes and spaces)
-    divided_log_list = log.split(" - ")
+    divided_log_list = text_log.split(" - ")
 
     # Unpack the elements of our list into variables
     timestamp_string, _, product_string, price_string = divided_log_list
 
-    # Use deloarean to parse our timestamp (strip off brackets to isolate the ISO format
-    # time)
+    # Use deloarean to parse our timestamp (strip off
+    # brackets to isolate the ISO format time)
     timestamp = delorean.parse(timestamp_string.strip("[]"))
 
     # Grab the product ID (split by the colon, select the second element (Id))
     product_id = int(product_string.split(":")[-1])
 
-    # Grab the price as a decimal (split by the dolar sign, select the second element)
+    # Grab the price as a decimal (split by the dolar sign,
+    # select the second element)
     price = Decimal(price_string.split("$")[-1])
 
     return timestamp, product_id, price
 
 
+def extract_data_with_parse():
+    """
+        Using the library parse to extract data from strings given a log
+        and the format of it including what you'd like to extract
+    """
+
+    # custom function for handling the price
+    def price(string):
+        return Decimal(string)
+
+    # Same log we've been using for every other method of extraction
+    text_log = "[2018-05-05T11:07:12.267897] - SALE - PRODUCT: 1345 - PRICE: $09.99"
+
+    # Specify the format of the log we're extracting data from
+    # (like a format string)
+    log_format = "[{date:ti}] - SALE - PRODUCT: {product:d} - PRICE: ${price:price}"
+
+    # Parse the text_log using log_format and a dictionary mapping our custom function
+    # to price
+    result = parse(log_format, text_log, {"price": price})
+
+    print(result)
+    print(result["date"])
+    print(result["product"])
+    print(result["price"])
+
+
+# Create a formatted table
+print("\nCreating a fromatted table")
 create_formatted_table()
+
 # Grab our transformed report
+print("\nTransforming a poorly formatted memo")
 print(transform_report())
+
 # Grab our extracted information
+print("\nExtracting information from a string straight into variables")
 print(extract_data_from_structure())
 
+# Use our PriceLog object to parse the same string of text
+print("\nExtracting information from a string with our own object")
 log = "[2018-05-05T11:07:12.267897] - SALE - PRODUCT: 1345 - PRICE: $09.99"
 print(PriceLog.parse(log))
+
+print("\nWorking with parse to extract information")
+extract_data_with_parse()
