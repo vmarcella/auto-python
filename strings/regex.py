@@ -52,7 +52,20 @@ print("\nvariable matched group(?)")
 print(group_match.group(1))
 
 # Create a case sensitive pattern and then use it to search text
-print("\nCompiling a pattern and then using it to search text")
-pattern = re.compile(r"the answer to question (\w+) is (yes|no)")
-match = pattern.search("Naturally, the answer to question 3b is no")
+print("\nCompiling a question pattern and then using it to search text")
+question_pattern = re.compile(r"the answer to question (\w+) is (yes|no)")
+match = question_pattern.search("Naturally, the answer to question 3b is no")
 print(match)
+
+# Using patterns to find city and state locations within text
+print("\nCompiling a location pattern and then using it to extract locations from text")
+location_pattern = re.compile(r"([A-Z][\w\s]+).(TX|OR|OH|MI)")
+location_text = """
+    the jackalopes are the team of Odessa,TX while the knights are native of
+    Corvallis OR and the mud thens come from Toledo.OH; the whitecaps have
+    their base in Grand Rapids,MI
+"""
+
+# Find all occurences of locations within the text
+for location_match in location_pattern.finditer(location_text):
+    print(location_match)
