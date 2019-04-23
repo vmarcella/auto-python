@@ -66,6 +66,6 @@ location_text = """
     their base in Grand Rapids,MI
 """
 
-# Find all occurences of locations within the text
+# Print all occurences of the pattern matching within our text
 for location_match in location_pattern.finditer(location_text):
     print(location_match)
