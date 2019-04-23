@@ -42,10 +42,17 @@ print("\nMatching any pattern that resembles a basic email address format")
 print(email_address)
 print(re.search(r"\S+@\S+", email_address))
 
-# Match any pattern that states "the phone number is " and any amount of digits/dashes
+# Match any pattern that states "the phone number is "
+# and any amount of digits/dashes
 group_match = re.match(r"the phone number is ([\d-]+)", phone_num)
 print("\nMatching any pattern that contains any amount of numbers or dashes")
-print("Entire matched group")
+print("\nEntire matched group")
 print(group_match.group())
-print("variable matched group(?)")
+print("\nvariable matched group(?)")
 print(group_match.group(1))
+
+# Create a case sensitive pattern and then use it to search text
+print("\nCompiling a pattern and then using it to search text")
+pattern = re.compile(r"the answer to question (\w+) is (yes|no)")
+match = pattern.search("Naturally, the answer to question 3b is no")
+print(match)
