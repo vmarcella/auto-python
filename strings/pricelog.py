@@ -25,9 +25,11 @@ class PriceLog:
             to a pricelog object
         """
 
+        # price formatting func
         def price(string):
             return Decimal(string)
 
+        # isodate formatting func
         def isodate(string):
             return delorean.parse(string)
 
