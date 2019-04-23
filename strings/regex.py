@@ -34,10 +34,18 @@ print(rand_string[match.end() :])
 phone_num = "the phone number is 1234-567-890"
 print("\nMatching any pattern that contains either numbers or dashes")
 print(phone_num)
-print(re.search(r"[0123456789-]+", phone_num))
-
+phone_match = re.search(r"[0123456789-]+", phone_num)
+print([int(n) for n in phone_match.group().split("-")])
 # Naively search for a pattern that matches an email.
 email_address = "my email is email.123@test.com"
 print("\nMatching any pattern that resembles a basic email address format")
 print(email_address)
 print(re.search(r"\S+@\S+", email_address))
+
+# Match any pattern that states "the phone number is " and any amount of digits/dashes
+group_match = re.match(r"the phone number is ([\d-]+)", phone_num)
+print("\nMatching any pattern that contains any amount of numbers or dashes")
+print("Entire matched group")
+print(group_match.group())
+print("variable matched group(?)")
+print(group_match.group(1))
