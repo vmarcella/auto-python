@@ -13,6 +13,7 @@ def main(number, other_number, output):
 
 
 if __name__ == "__main__":
+    # Setup the parser with help for default values
     parser = argparse.ArgumentParser(
         formatter_class=argparse.ArgumentDefaultsHelpFormatter
     )
