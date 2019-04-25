@@ -1,9 +1,15 @@
+"""
+    A simple cli tool carring out tasks utilizing argparse and configparser
+"""
 import argparse
 import configparser
 import sys
 
 
 def main(number, other_number, output):
+    """
+        Main functionality of our cli program
+    """
     result = number * other_number
     print(f"The result is {result}", file=output)
 
@@ -16,10 +22,12 @@ if __name__ == "__main__":
     parser.add_argument("-n1", type=int, help="A number", default=1)
     parser.add_argument("-n2", type=int, help="Another number", default=1)
 
-    # argparse.Filetype will open up a file in read mode
+    # argparse.Filetype will open up a file in a specified mode.
     parser.add_argument(
         "--config", "-c", type=argparse.FileType("r"), help="config file"
     )
+    # We default the output argument to std.out, in case the user doesn't
+    # want output to be displaced anywhere else.
     parser.add_argument(
         "-o",
         dest="output",
