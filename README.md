@@ -8,7 +8,7 @@ Just a collection of all the snippets I modify or obtain from the book, python a
 2. Learn more about the cooler things you can specifically use python for.
 
 ## How to run
-Assuming you've cloned the repository and are in one of the sub directories
+Assuming you've cloned the repository and are in the root directory
 `pip install -r requirements.txt`
 
 and then from there you can run any file that may exist within the directory.
