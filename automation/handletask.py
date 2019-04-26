@@ -51,6 +51,6 @@ if __name__ == "__main__":
     # Attempt to divide and if it fails, log the error and quit with it.
     try:
         main(args.n1, args.n2, args.output)
-    except ZeroDivisionError:
-        logging.exception("There was an error running the task")
+    except ZeroDivisionError as e:
+        logging.exception(e)
         exit(1)
