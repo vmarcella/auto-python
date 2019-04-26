@@ -1,0 +1,8 @@
+2019-04-25 21:56:38,860 root INFO Dividing 43 by 0
+2019-04-25 21:56:38,860 root ERROR division by zero
+Traceback (most recent call last):
+  File "handletask.py", line 53, in <module>
+    main(args.n1, args.n2, args.output)
+  File "handletask.py", line 19, in main
+    result = number / other_number
+ZeroDivisionError: division by zero

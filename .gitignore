@@ -173,3 +173,4 @@ dmypy.json
 .pyre/
 
 # End of https://www.gitignore.io/api/macos,python,linux,pip
+email_conf.ini
