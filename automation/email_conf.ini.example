@@ -1,0 +1,5 @@
+[DEFAULT]
+email =
+server = smtp.gmail.com
+port = 465
+password =
