@@ -2,4 +2,5 @@ delorean==1.0.0
 requests==2.18.4
 parse==1.8.2
 PyYAML==3.12
-requests==2.18.3
+beautifulsoup4==4.6.0
+
