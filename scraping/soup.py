@@ -1,3 +1,5 @@
+import re
+
 import requests
 from bs4 import BeautifulSoup
 
@@ -25,6 +27,12 @@ for element in link_section.next_elements:
         break
     section.append(element.string or "")
 
+
+# Join the text we found together
 result = "".join(section)
 print("--Printing the result of the link section--")
 print(result)
+
+# Find all h2 and h3 elements
+headers = page.find_all(re.compile("^h(2|3)"))
+print(headers)
