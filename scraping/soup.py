@@ -34,5 +34,6 @@ print("--Printing the result of the link section--")
 print(result)
 
 # Find all h2 and h3 elements
+# (Searches for them at the beginning of the string)
 headers = page.find_all(re.compile("^h(2|3)"))
 print(headers)
