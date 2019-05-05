@@ -15,7 +15,7 @@ DEFAULT_TERM = "python"
 
 def get_links(parsed_url, page):
     """
-        Get all the links to crawl
+        Fetch all of the links we need to crawl
     """
     links = []
 
@@ -40,7 +40,7 @@ def get_links(parsed_url, page):
             path = urljoin(parsed_url.path, link)
             link = f"{scheme}://{netloc}{path}"
 
-        # Only parse links not in the same domain
+        # Only parse links within the same domain
         if parsed_url.netloc not in link:
             continue
 
@@ -51,7 +51,7 @@ def get_links(parsed_url, page):
 
 def search_text(source_link, page, text):
     """
-        Search for an element with the serached text and print it
+        Search for all elements with the text we're looking for and print it
     """
     for element in page.find_all(text=re.compile(text, flags=re.IGNORECASE)):
         print(f"Link {source_link} --> {element}")
@@ -59,7 +59,7 @@ def search_text(source_link, page, text):
 
 def process_link(source_link, text):
     """
-        Process a link given 
+        Process a link to crawl given a source link
     """
     logging.info(f"Extracting link from {source_link}")
     parsed_url = urlparse(source_link)
@@ -136,4 +136,5 @@ def get_arguments():
 if __name__ == "__main__":
     arguments = get_arguments()
 
+    # Use the provided search term or default one if not provided
     main(arguments.url, arguments.t or DEFAULT_TERM)
