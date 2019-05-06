@@ -28,7 +28,12 @@ def main():
     print(response)
     print(response.json())
 
+    # Get a specific post
     response = requests.get("https://jsonplaceholder.typicode.com/posts/2")
+
+    # Print out the response and specific post
+    print(response)
+    print(response.json())
 
 
 if __name__ == "__main__":
