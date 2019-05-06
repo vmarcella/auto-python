@@ -28,7 +28,7 @@ def get_links(parsed_url, page):
         if not link:
             continue
 
-        # Avoid all internal links
+        # Avoid all internal page links
         if link.startswith("#"):
             continue
 
@@ -40,7 +40,7 @@ def get_links(parsed_url, page):
             path = urljoin(parsed_url.path, link)
             link = f"{scheme}://{netloc}{path}"
 
-        # Only parse links within the same domain
+        # Ensure that the link is within the same domain
         if parsed_url.netloc not in link:
             continue
 
