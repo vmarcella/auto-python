@@ -31,7 +31,8 @@ def get_fields():
 
 def send_data():
     """
-        send data to the forms that 
+        send form data to httpbin using the input names we gathered
+        from before
     """
 
     # Create the form data based on what we observed with the input
