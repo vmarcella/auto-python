@@ -27,13 +27,18 @@ customer_email = browser.find_element_by_name("custemail")
 customer_email.clear()
 customer_email.send_keys("contact@me.com")
 
-# Iterate through all of our size inputs and
+# Iterate through all of our size inputs select the medium size pizza
 for size_input in browser.find_elements_by_name("size"):
     if size_input.get_attribute("value") == "medium":
         size_input.click()
 
+# define the wanted toppings and then search through the topping inputs
+# till we find the ones that we're looking for.
 wanted_toppings = ["bacon", "onion"]
-
 for topping_input in browser.find_elements_by_name("topping"):
     if topping_input.get_attribute("value").lower() in wanted_toppings:
         topping_input.click()
+
+# Submit the form and close the browser
+browser.find_element_by_tag_name("form").submit()
+browser.quit()
