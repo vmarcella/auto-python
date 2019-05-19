@@ -46,7 +46,10 @@ def read_iso_output_file() -> None:
         logging.info(file.read())
 
 
-def infer_encoding():
+def infer_encoding() -> None:
+    """
+        Infer the encoding of a file with beautiful soup 4
+    """
     logging.info("---INFER ENCODING OF A FILE WITH BS4---")
     with open("example_output_iso.txt", "rb") as file:
         content = file.read()
