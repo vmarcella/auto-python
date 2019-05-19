@@ -3,6 +3,8 @@
 """
 import logging
 
+from bs4 import UnicodeDammit
+
 
 def read_utf8() -> None:
     """
@@ -44,9 +46,20 @@ def read_iso_output_file() -> None:
         logging.info(file.read())
 
 
+def infer_encoding():
+    logging.info("---INFER ENCODING OF A FILE WITH BS4---")
+    with open("example_output_iso.txt", "rb") as file:
+        content = file.read()
+
+        suggestion = UnicodeDammit(content)
+        logging.info(f"The inferred encoding is: {suggestion.original_encoding}")
+        logging.info(f"Unicode markup: {suggestion.unicode_markup}")
+
+
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO, format="%(message)s")
     read_utf8()
     read_iso()
     write_utf_into_iso()
     read_iso_output_file()
+    infer_encoding()
