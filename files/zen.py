@@ -22,6 +22,16 @@ def read_should() -> None:
                 logging.info(line)
 
 
+def read_better() -> None:
+    """
+        Look for the word better within the file
+    """
+    for line in file:
+        if "better" in line.lower():
+            logging.info(line)
+            break
+
+
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     read_everything()
