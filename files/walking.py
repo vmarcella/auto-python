@@ -53,3 +53,4 @@ if __name__ == "__main__":
     list_files()
     list_files_with_root()
     find_pdfs()
+    find_even_nums()
