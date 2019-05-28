@@ -1,0 +1,6 @@
+
+Movies report
+-------------
+Date: 2019-05-28 00:40:05.193297
+Movies seen in the last 30 days: 3
+Total minutes: 376
