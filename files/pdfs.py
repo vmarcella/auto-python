@@ -19,6 +19,7 @@ def main() -> None:
     )
     logging.info(f"Document was produced by: {first_pdf.documentInfo['/Producer']}")
 
+    # Extract the content of the first pdf's page
     logging.info("---PDF 1 PAGE CONTENT---")
     logging.info(first_pdf.pages[0].extractText())
     logging.info(first_pdf.pages[1].extractText())
