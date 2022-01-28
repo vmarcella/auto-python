@@ -1,7 +1,7 @@
 delorean==1.0.0
 requests==2.18.4
 parse==1.8.2
-PyYAML==3.12
+PyYAML==5.4
 beautifulsoup4==4.6.0
 feedparser==5.2.1
 selenium==3.12.0
